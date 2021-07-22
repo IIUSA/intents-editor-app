@@ -1,2 +1,5 @@
 # intents-editor-app
-The repo for the multiplatform Intents Editor app
+The Intents Editor app is a multiplatform app that allows the user to
+edit Intents for bots. The app runs on:
+
+
