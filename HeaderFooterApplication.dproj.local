@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<ActiveMobileDevice>
+		<NoProfile iOSSimulator="iPhone5"/>  <PMyMacbookPro iOSSimulator="iPhone5"/>
+  </ActiveMobileDevice>
+	<Transactions>
+    <Transaction>2021/07/20 08:34:49.000.369,C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\IntentsEditor.pas=C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\HeaderFooterTemplate.pas</Transaction>
+    <Transaction>2021/07/20 08:34:49.000.370,C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\IntentsEditor.fmx=C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\HeaderFooterTemplate.fmx</Transaction>
+    <Transaction>2021/07/20 08:52:47.000.279,C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\HeaderFooterTemplate.pas=C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\IntentsEditor.pas</Transaction>
+    <Transaction>2021/07/20 08:52:47.000.279,C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\HeaderFooterTemplate.fmx=C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\IntentsEditor.fmx</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,157 @@
+object mainForm: TmainForm
+  Left = 0
+  Top = 0
+  BorderStyle = Single
+  Caption = 'Header Footer Form'
+  ClientHeight = 567
+  ClientWidth = 359
+  FormFactor.Width = 1440
+  FormFactor.Height = 900
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Header: TToolBar
+    Size.Width = 359.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object HeaderLabel: TLabel
+      Align = Contents
+      StyledSettings = [Family, FontColor]
+      Size.Width = 359.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'toollabel'
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      TextSettings.HorzAlign = Center
+      Text = 'IIUSATech Intents Editor'
+    end
+    object tagLabel: TLabel
+      StyledSettings = [Family, FontColor]
+      Position.X = 9.000000000000000000
+      Position.Y = 107.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      Text = 'Tag:'
+      TabOrder = 5
+    end
+    object fileLael: TLabel
+      StyledSettings = [Family, FontColor]
+      Position.X = 9.000000000000000000
+      Position.Y = 78.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      Text = 'File:'
+      TabOrder = 2
+    end
+    object fileNameLabel: TLabel
+      StyledSettings = [Family, FontColor]
+      Position.X = 56.000000000000000000
+      Position.Y = 78.000000000000000000
+      Size.Width = 297.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      Text = '<...>'
+      TabOrder = 1
+    end
+    object patternsLabel: TLabel
+      StyledSettings = [Family, FontColor]
+      Position.X = 9.000000000000000000
+      Position.Y = 142.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      Text = 'Patterns'
+      TabOrder = 4
+    end
+    object responsesLabel: TLabel
+      StyledSettings = [Family, FontColor]
+      Position.X = 9.000000000000000000
+      Position.Y = 344.000000000000000000
+      Size.Width = 104.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      Text = 'Responses'
+      TabOrder = 3
+    end
+  end
+  object Footer: TToolBar
+    Align = Bottom
+    Position.Y = 519.000000000000000000
+    Size.Width = 359.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'bottomtoolbar'
+    TabOrder = 1
+  end
+  object newButton: TButton
+    Position.X = 8.000000000000000000
+    Position.Y = 49.000000000000000000
+    TabOrder = 3
+    Text = 'New'
+  end
+  object openButton: TButton
+    Position.X = 96.000000000000000000
+    Position.Y = 49.000000000000000000
+    TabOrder = 4
+    Text = 'Open'
+  end
+  object helpButton: TButton
+    Position.X = 272.000000000000000000
+    Position.Y = 49.000000000000000000
+    TabOrder = 5
+    Text = 'Help'
+  end
+  object saveButton: TButton
+    Position.X = 184.000000000000000000
+    Position.Y = 49.000000000000000000
+    TabOrder = 6
+    Text = 'Save'
+  end
+  object tagSelectPopupBox: TPopupBox
+    Items.Strings = (
+      '(Select a tag to edit...)')
+    Position.X = 56.000000000000000000
+    Position.Y = 112.000000000000000000
+    Size.Width = 297.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 7
+  end
+  object patternsMemo: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Position.X = 11.000000000000000000
+    Position.Y = 170.000000000000000000
+    Size.Width = 334.000000000000000000
+    Size.Height = 169.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 9
+    Viewport.Width = 330.000000000000000000
+    Viewport.Height = 165.000000000000000000
+  end
+  object responsesMemo: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Position.X = 11.000000000000000000
+    Position.Y = 373.000000000000000000
+    Size.Width = 334.000000000000000000
+    Size.Height = 177.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 8
+    Viewport.Width = 330.000000000000000000
+    Viewport.Height = 173.000000000000000000
+  end
+end
