@@ -528,6 +528,15 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="intents.json" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>HeaderFooterApplication\assets\internal\</RemoteDir>
+            <RemoteName>intents.json</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="Android64\Debug\styles-v21.xml" Condition="'$(Config)'=='Debug'">
             <RemoteDir>HeaderFooterApplication\res\values-v21\</RemoteDir>
             <RemoteName>styles.xml</RemoteName>

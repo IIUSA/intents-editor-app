@@ -3,16 +3,16 @@ object mainForm: TmainForm
   Top = 0
   BorderStyle = Single
   Caption = 'IIUSATech Intents Editor v0.0.'
-  ClientHeight = 524
-  ClientWidth = 359
+  ClientHeight = 511
+  ClientWidth = 353
   FormFactor.Width = 1440
   FormFactor.Height = 900
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
   object Footer: TToolBar
     Align = Bottom
-    Position.Y = 476.000000000000000000
-    Size.Width = 359.000000000000000000
+    Position.Y = 463.000000000000000000
+    Size.Width = 353.000000000000000000
     Size.Height = 48.000000000000000000
     Size.PlatformDefault = False
     StyleLookup = 'bottomtoolbar'
@@ -20,44 +20,44 @@ object mainForm: TmainForm
   end
   object newButton: TButton
     Hint = 'Clear and start fresh'
-    Position.X = 19.000000000000000000
+    Position.X = 9.000000000000000000
     Position.Y = 14.000000000000000000
-    Size.Width = 70.000000000000000000
+    Size.Width = 65.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 1
+    TabOrder = 3
     Text = 'New'
     OnClick = newButtonClick
   end
   object openButton: TButton
     Hint = 'Open an existing intent'
-    Position.X = 106.000000000000000000
+    Position.X = 143.000000000000000000
     Position.Y = 14.000000000000000000
-    Size.Width = 70.000000000000000000
+    Size.Width = 65.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 2
+    TabOrder = 4
     Text = 'Open'
     OnClick = openButtonClick
   end
   object helpButton: TButton
     Hint = 'Need some help?'
-    Position.X = 279.000000000000000000
+    Position.X = 210.000000000000000000
     Position.Y = 14.000000000000000000
-    Size.Width = 70.000000000000000000
+    Size.Width = 65.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 3
+    TabOrder = 6
     Text = 'Help'
   end
   object saveButton: TButton
     Hint = 'Save this intent'
-    Position.X = 194.000000000000000000
+    Position.X = 76.000000000000000000
     Position.Y = 14.000000000000000000
-    Size.Width = 70.000000000000000000
+    Size.Width = 65.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 4
+    TabOrder = 7
     Text = 'Save'
     OnClick = saveButtonClick
   end
@@ -66,10 +66,10 @@ object mainForm: TmainForm
       '(Select a tag to edit...)')
     Position.X = 40.000000000000000000
     Position.Y = 77.000000000000000000
-    Size.Width = 305.000000000000000000
+    Size.Width = 217.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 5
+    TabOrder = 8
   end
   object patternsMemo: TMemo
     Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
@@ -79,7 +79,7 @@ object mainForm: TmainForm
     Size.Width = 334.000000000000000000
     Size.Height = 176.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 7
+    TabOrder = 10
     Viewport.Width = 330.000000000000000000
     Viewport.Height = 172.000000000000000000
   end
@@ -87,11 +87,11 @@ object mainForm: TmainForm
     Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
     DataDetectorTypes = []
     Position.X = 11.000000000000000000
-    Position.Y = 338.000000000000000000
+    Position.Y = 328.000000000000000000
     Size.Width = 334.000000000000000000
     Size.Height = 177.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 6
+    TabOrder = 9
     Viewport.Width = 330.000000000000000000
     Viewport.Height = 173.000000000000000000
   end
@@ -102,7 +102,7 @@ object mainForm: TmainForm
     Size.Height = 17.000000000000000000
     Size.PlatformDefault = False
     Text = 'File: '
-    TabOrder = 8
+    TabOrder = 11
   end
   object tagLabel: TLabel
     Position.X = 8.000000000000000000
@@ -111,42 +111,79 @@ object mainForm: TmainForm
     Size.Height = 17.000000000000000000
     Size.PlatformDefault = False
     Text = 'Tag:'
-    TabOrder = 9
+    TabOrder = 12
   end
   object patternsLabel: TLabel
     Hint = 'Enter intent patterns one per line'
     Position.X = 8.000000000000000000
     Position.Y = 107.000000000000000000
-    Size.Width = 337.000000000000000000
+    Size.Width = 225.000000000000000000
     Size.Height = 17.000000000000000000
     Size.PlatformDefault = False
     Text = 'Pattern(s) (At least one, one per line)'
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 11
+    TabOrder = 14
   end
   object responsesLabel: TLabel
     Hint = 'Enter responses one per line'
     Position.X = 8.000000000000000000
-    Position.Y = 315.000000000000000000
+    Position.Y = 308.000000000000000000
     Size.Width = 337.000000000000000000
     Size.Height = 17.000000000000000000
     Size.PlatformDefault = False
     Text = 'Response(s) (At least one, one per line)'
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 10
+    TabOrder = 13
   end
   object OpenDialog1: TOpenDialog
+    OnClose = OpenDialog1Close
     DefaultExt = '*.json'
+    FileName = 'C:\Users\Juan\Documents\murdocca\intents-editor-app\intents.json'
+    Filter = 'Json Intent Files|*.json'
     Title = 'Open an Intents file'
     Left = 304
     Top = 32
   end
   object SaveDialog1: TSaveDialog
     DefaultExt = '*.json'
+    Filter = 'Json Intents file|*.json'
     Title = 'Save this Intent definition'
     Left = 264
     Top = 32
+  end
+  object AddTagBtn: TButton
+    Hint = 'Add new tag'
+    Position.X = 264.000000000000000000
+    Position.Y = 78.000000000000000000
+    Size.Width = 32.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = '+'
+    OnClick = newButtonClick
+  end
+  object DelTagBtn: TButton
+    Hint = 'Delete this tag'
+    Position.X = 302.000000000000000000
+    Position.Y = 78.000000000000000000
+    Size.Width = 34.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Text = '-'
+    OnClick = newButtonClick
+  end
+  object AboutBtn: TButton
+    Hint = 'About this app'
+    Position.X = 277.000000000000000000
+    Position.Y = 14.000000000000000000
+    Size.Width = 65.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    Text = 'About'
+    OnClick = AboutBtnClick
   end
 end
