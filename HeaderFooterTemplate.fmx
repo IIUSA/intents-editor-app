@@ -2,7 +2,7 @@ object mainForm: TmainForm
   Left = 0
   Top = 0
   BorderStyle = Single
-  Caption = 'IIUSATech Intents Editor v0.0.'
+  Caption = 'IIUSATech Intents Editor'
   ClientHeight = 511
   ClientWidth = 353
   FormFactor.Width = 1440
@@ -18,7 +18,8 @@ object mainForm: TmainForm
     StyleLookup = 'bottomtoolbar'
     TabOrder = 0
   end
-  object newButton: TButton
+  object resetButton: TButton
+    Enabled = False
     Hint = 'Clear and start fresh'
     Position.X = 9.000000000000000000
     Position.Y = 14.000000000000000000
@@ -26,8 +27,8 @@ object mainForm: TmainForm
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 3
-    Text = 'New'
-    OnClick = newButtonClick
+    Text = 'Reset'
+    OnClick = resetButtonClick
   end
   object openButton: TButton
     Hint = 'Open an existing intent'
@@ -62,14 +63,17 @@ object mainForm: TmainForm
     OnClick = saveButtonClick
   end
   object tagSelector: TPopupBox
+    Enabled = False
     Items.Strings = (
-      '(Select a tag to edit...)')
+      '')
+    ItemIndex = 0
     Position.X = 40.000000000000000000
     Position.Y = 77.000000000000000000
     Size.Width = 217.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 8
+    OnChange = tagSelectorChange
   end
   object patternsMemo: TMemo
     Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
@@ -162,7 +166,7 @@ object mainForm: TmainForm
     Size.PlatformDefault = False
     TabOrder = 2
     Text = '+'
-    OnClick = newButtonClick
+    OnClick = AddTagBtnClick
   end
   object DelTagBtn: TButton
     Hint = 'Delete this tag'
@@ -173,7 +177,7 @@ object mainForm: TmainForm
     Size.PlatformDefault = False
     TabOrder = 1
     Text = '-'
-    OnClick = newButtonClick
+    OnClick = DelTagBtnClick
   end
   object AboutBtn: TButton
     Hint = 'About this app'
