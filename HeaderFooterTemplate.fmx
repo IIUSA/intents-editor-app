@@ -26,7 +26,7 @@ object mainForm: TmainForm
     Size.Width = 65.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 3
+    TabOrder = 4
     Text = 'Reset'
     OnClick = resetButtonClick
   end
@@ -37,7 +37,7 @@ object mainForm: TmainForm
     Size.Width = 65.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 4
+    TabOrder = 5
     Text = 'Open'
     OnClick = openButtonClick
   end
@@ -48,7 +48,7 @@ object mainForm: TmainForm
     Size.Width = 65.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 6
+    TabOrder = 7
     Text = 'Help'
   end
   object saveButton: TButton
@@ -58,7 +58,7 @@ object mainForm: TmainForm
     Size.Width = 65.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 7
+    TabOrder = 8
     Text = 'Save'
     OnClick = saveButtonClick
   end
@@ -67,12 +67,12 @@ object mainForm: TmainForm
     Items.Strings = (
       '')
     ItemIndex = 0
-    Position.X = 40.000000000000000000
+    Position.X = 31.000000000000000000
     Position.Y = 77.000000000000000000
-    Size.Width = 217.000000000000000000
+    Size.Width = 210.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 8
+    TabOrder = 9
     OnChange = tagSelectorChange
   end
   object patternsMemo: TMemo
@@ -83,7 +83,7 @@ object mainForm: TmainForm
     Size.Width = 334.000000000000000000
     Size.Height = 176.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 10
+    TabOrder = 11
     Viewport.Width = 330.000000000000000000
     Viewport.Height = 172.000000000000000000
   end
@@ -95,7 +95,7 @@ object mainForm: TmainForm
     Size.Width = 334.000000000000000000
     Size.Height = 177.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 9
+    TabOrder = 10
     Viewport.Width = 330.000000000000000000
     Viewport.Height = 173.000000000000000000
   end
@@ -106,7 +106,7 @@ object mainForm: TmainForm
     Size.Height = 17.000000000000000000
     Size.PlatformDefault = False
     Text = 'File: '
-    TabOrder = 11
+    TabOrder = 12
   end
   object tagLabel: TLabel
     Position.X = 8.000000000000000000
@@ -115,7 +115,7 @@ object mainForm: TmainForm
     Size.Height = 17.000000000000000000
     Size.PlatformDefault = False
     Text = 'Tag:'
-    TabOrder = 12
+    TabOrder = 13
   end
   object patternsLabel: TLabel
     Hint = 'Enter intent patterns one per line'
@@ -127,7 +127,7 @@ object mainForm: TmainForm
     Text = 'Pattern(s) (At least one, one per line)'
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 14
+    TabOrder = 15
   end
   object responsesLabel: TLabel
     Hint = 'Enter responses one per line'
@@ -139,7 +139,7 @@ object mainForm: TmainForm
     Text = 'Response(s) (At least one, one per line)'
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 13
+    TabOrder = 14
   end
   object OpenDialog1: TOpenDialog
     OnClose = OpenDialog1Close
@@ -159,24 +159,24 @@ object mainForm: TmainForm
   end
   object AddTagBtn: TButton
     Hint = 'Add new tag'
-    Position.X = 264.000000000000000000
+    Position.X = 277.000000000000000000
     Position.Y = 78.000000000000000000
     Size.Width = 32.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 2
-    Text = '+'
+    TabOrder = 3
+    Text = 'Add'
     OnClick = AddTagBtnClick
   end
   object DelTagBtn: TButton
     Hint = 'Delete this tag'
-    Position.X = 302.000000000000000000
+    Position.X = 311.000000000000000000
     Position.Y = 78.000000000000000000
     Size.Width = 34.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
-    Text = '-'
+    Text = 'Del'
     OnClick = DelTagBtnClick
   end
   object AboutBtn: TButton
@@ -186,8 +186,20 @@ object mainForm: TmainForm
     Size.Width = 65.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 5
+    TabOrder = 6
     Text = 'About'
     OnClick = AboutBtnClick
+  end
+  object EditTagBtn: TButton
+    Enabled = False
+    Hint = 'Edit this tag'#39's name'
+    Position.X = 244.000000000000000000
+    Position.Y = 78.000000000000000000
+    Size.Width = 32.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'Edit'
+    OnClick = AddTagBtnClick
   end
 end

@@ -5,11 +5,11 @@
 		<PMyMacbookPro iOSSimulator="iPhone5"/>
 	</ActiveMobileDevice>
 	<Transactions>
-    <Transaction>2021/07/20 08:34:49.000.369,C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\IntentsEditor.pas=C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\HeaderFooterTemplate.pas</Transaction>
-    <Transaction>2021/07/20 08:34:49.000.370,C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\IntentsEditor.fmx=C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\HeaderFooterTemplate.fmx</Transaction>
-    <Transaction>2021/07/20 08:52:47.000.279,C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\HeaderFooterTemplate.pas=C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\IntentsEditor.pas</Transaction>
-    <Transaction>2021/07/20 08:52:47.000.279,C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\HeaderFooterTemplate.fmx=C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\IntentsEditor.fmx</Transaction>
+    <Transaction>2021/07/20 08:34:49.000.369,C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\HeaderFooterTemplate.pas=C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\IntentsEditor.pas</Transaction>
+    <Transaction>2021/07/20 08:34:49.000.370,C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\HeaderFooterTemplate.fmx=C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\IntentsEditor.fmx</Transaction>
+    <Transaction>2021/07/20 08:52:47.000.279,C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\IntentsEditor.pas=C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\HeaderFooterTemplate.pas</Transaction>
+    <Transaction>2021/07/20 08:52:47.000.279,C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\IntentsEditor.fmx=C:\Users\flybd\OneDrive\Documents\Embarcadero\Studio\Projects\FirstMD\HeaderFooterTemplate.fmx</Transaction>
     <Transaction>2021/07/28 19:23:34.000.117,=C:\Users\Juan\Documents\murdocca\intents-editor-app\New1.json</Transaction>
-    <Transaction>2021/07/28 19:24:18.000.258,C:\Users\Juan\Documents\murdocca\intents-editor-app\intents.json=C:\Users\Juan\Documents\murdocca\intents-editor-app\New1.json</Transaction>
+    <Transaction>2021/07/28 19:24:18.000.258,C:\Users\Juan\Documents\murdocca\intents-editor-app\New1.json=C:\Users\Juan\Documents\murdocca\intents-editor-app\intents.json</Transaction>
   </Transactions>
 </BorlandProject>

@@ -28,6 +28,7 @@ type
     AddTagBtn: TButton;
     DelTagBtn: TButton;
     AboutBtn: TButton;
+    EditTagBtn: TButton;
     procedure openButtonClick(Sender: TObject);
     procedure saveButtonClick(Sender: TObject);
     procedure resetButtonClick(Sender: TObject);
