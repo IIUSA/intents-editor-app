@@ -52,6 +52,7 @@ object mainForm: TmainForm
     Text = 'Help'
   end
   object saveButton: TButton
+    Enabled = False
     Hint = 'Save this intent'
     Position.X = 76.000000000000000000
     Position.Y = 14.000000000000000000
@@ -169,6 +170,7 @@ object mainForm: TmainForm
     OnClick = AddTagBtnClick
   end
   object DelTagBtn: TButton
+    Enabled = False
     Hint = 'Delete this tag'
     Position.X = 311.000000000000000000
     Position.Y = 78.000000000000000000

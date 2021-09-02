@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.ExtCtrls, FMX.Controls.Presentation, FMX.ScrollBox, FMX.Memo, FMX.DialogService,
   FMX.DialogService.Sync, FMX.Memo.Types, FMX.Platform, System.JSON, System.IOUtils,
-  WinJson;
+  WinJson, Generics.Collections, System.JSON.Readers, System.JSON.Types;
 
 type
   TmainForm = class(TForm)
@@ -40,53 +40,105 @@ type
   private
     { Private declarations }
     procedure Populate;
-    procedure WalkIt(theJsonValues: TJson; memoSection: string);
+    procedure WalkIt;
   public
     { Public declarations }
+  end;
+
+type
+  TIntent = record
+    patterns: TStringList;
+    responses: TStringList
   end;
 
 var
   mainForm: TmainForm;
   JsonValues: TJson;
+  myDict: TDictionary<string, TIntent>;
+  anIntent: TIntent;
 
 implementation
 
 {$R *.fmx}
 
-procedure TmainForm.WalkIt(theJsonValues: TJson; memoSection: string);
+// Walkit opens the json file, checks that it is an intents file and
+// reads the various pattern and response groups into a dictionary, with
+// the tag as the dictionary key
+
+procedure TmainForm.WalkIt;
 var
-  JsonArray: TJsonArray;
-  JsonItem: TJsonItem;
-  JsonObject: TJsonObject;
-  i: integer;
+  theFile: TextFile;
+  myStringBuilder: TStringBuilder;
+  aLine,currentTag: string;
+  JSONReader: TJsonTextReader;
+  tr: TStringReader;
+
 begin
-  if JsonValues is TJsonNull then begin end
-  else if JsonValues is TJsonFalse then begin end
-  else if JsonValues is TJsonTrue then begin end
-  else if JsonValues is TJsonNumber then begin end
-  else if JsonValues is TJsonString then
- //    AddChild(Parent, Prefix + '"' + TJsonString(JsonItem).Value + '"')
-  else if JsonValues is TJsonArray then
+  AssignFile(theFile,OpenDialog1.FileName);
+  Reset(theFile);
+  myStringBuilder := TStringBuilder.Create(FileSize(theFile));
+  while not Eof(theFile) do
   begin
-    JsonArray := TJsonArray(JsonValues);
-    for i := 0 to JsonArray.ElementCount - 1 do
-  //    Show(Child, '[' + IntToStr(i) + '] ', JsonArray.Elements[i]);
-  end
-  else if JsonValues is TJsonObject then
-  begin
-  //  Child := AddChild(Parent, Prefix + '{}');
-    JsonObject := TJsonObject(JsonValues);
-    for i := 0 to JsonObject.MemberCount - 1 do
-  //    Show(Child, JsonObject.MemberName[i] + ': ', JsonObject.MemberValue[i]);
+    ReadLn(theFile,aLine);
+    myStringBuilder.Append(aLine)
+  end;
+  CloseFile(theFile);
+  tr := TStringReader.Create(myStringBuilder.Text);
+  JSONReader := TJsonTextReader.Create(tr);
+  with JSONReader do
+  try
+    repeat
+      Read;
+    until TokenType = TJSONToken.PropertyName;
+    if Value.AsString <> 'intents' then // Look for 'intents'
+      ShowMessage('This file is not an intents definition.')
+    else
+    begin
+      myDict := TDictionary<string,TIntent>.Create(1);
+      while Read do
+        case JSONReader.TokenType of
+          TJSONToken.PropertyName:
+            begin
+              if Value.ToString = 'tag' then
+              begin
+                Read;
+                currentTag := Value.ToString;
+              end
+              else if Value.ToString = 'patterns' then
+              begin
+                anIntent.patterns := TStringlist.Create;
+                while TokenType <> TJSONToken.EndArray do  // read the patterns
+                  begin
+                    Read;
+                  anIntent.patterns.Add(Value.AsString);
+                end
+              end
+              else
+              begin
+                anIntent.responses := TStringlist.Create;
+                while TokenType <> TJSONToken.EndArray do  // read the responses
+                begin
+                  Read;
+                  anIntent.responses.Add(Value.AsString);
+                end;
+                myDict.Add(currentTag,anIntent); // add the patterns and responses to the dict
+              end
+            end;
+        end;
+      end
+  finally  // The only object that remains after all this is the dictionary
+    JSONreader.free;
+    tr.free;
+    myStringBuilder.free;
   end;
 end;
 
+
 procedure TmainForm.Populate;
 begin
-
   fileLabel.Text := 'File: ' + OpenDialog1.FileName;
   resetButton.Enabled := true;
-  WalkIt(JsonValues,'');
+  WalkIt;
 end;
 
 procedure TmainForm.AboutBtnClick(Sender: TObject);
@@ -118,13 +170,13 @@ begin
     procedure (const AResult: TModalResult) begin
        if AResult = mrYes then
        begin
+          // Put code here to reset the dictionaries
           fileLabel.Text := 'File:';
-          JsonValues.Free;
-          JsonValues := nil;
           resetButton.Enabled := false;
           patternsMemo.Lines.Clear;
           responsesMemo.Lines.Clear;
           tagSelector.Items.Clear;
+          myDict.free;
        end;
     end);
 end;
