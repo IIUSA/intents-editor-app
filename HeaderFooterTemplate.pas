@@ -37,6 +37,7 @@ type
     procedure DelTagBtnClick(Sender: TObject);
     procedure AddTagBtnClick(Sender: TObject);
     procedure tagSelectorChange(Sender: TObject);
+    procedure EditTagBtnClick(Sender: TObject);
   private
     { Private declarations }
     procedure Populate;
@@ -72,7 +73,6 @@ var
   aLine,currentTag: string;
   JSONReader: TJsonTextReader;
   tr: TStringReader;
-
 begin
   AssignFile(theFile,OpenDialog1.FileName);
   Reset(theFile);
@@ -107,15 +107,17 @@ begin
               else if Value.ToString = 'patterns' then
               begin
                 anIntent.patterns := TStringlist.Create;
+                Read;
                 while TokenType <> TJSONToken.EndArray do  // read the patterns
                   begin
                     Read;
-                  anIntent.patterns.Add(Value.AsString);
+                    anIntent.patterns.Add(Value.AsString);
                 end
               end
               else
               begin
                 anIntent.responses := TStringlist.Create;
+                Read;
                 while TokenType <> TJSONToken.EndArray do  // read the responses
                 begin
                   Read;
@@ -126,19 +128,33 @@ begin
             end;
         end;
       end
-  finally  // The only object that remains after all this is the dictionary
+  finally  // The only object that remains is the dictionary, rest are freed
     JSONreader.free;
     tr.free;
     myStringBuilder.free;
   end;
 end;
 
-
 procedure TmainForm.Populate;
+var
+  i: integer;
 begin
   fileLabel.Text := 'File: ' + OpenDialog1.FileName;
   resetButton.Enabled := true;
   WalkIt;
+  for var Enum in MyDict do
+    if Enum.Key <> '' then
+      tagSelector.Items.add(Enum.key);
+  tagSelector.Enabled := true;
+  tagSelector.ItemIndex := 1;
+  tagSelector.TextAlign := TTextAlign.Leading;
+  EditTagBtn.enabled := true;
+  DelTagBtn.Enabled := true;
+  patternsMemo.Enabled := true;
+  responsesMemo.Enabled := true;
+  myDict.TryGetValue(tagSelector.Items[tagSelector.ItemIndex],anIntent);
+  patternsMemo.Lines.Assign(anIntent.patterns);
+  responsesMemo.Lines.Assign(anIntent.responses);
 end;
 
 procedure TmainForm.AboutBtnClick(Sender: TObject);
@@ -163,6 +179,11 @@ begin
     end);
 end;
 
+procedure TmainForm.EditTagBtnClick(Sender: TObject);
+begin
+  TDialogService.InputQuery('Edit tag name',['Tag name:'],[''],nil);
+end;
+
 procedure TmainForm.resetButtonClick(Sender: TObject);
 begin
   TDialogService.MessageDialog('Do you really want to clear the workspace?',
@@ -173,8 +194,13 @@ begin
           // Put code here to reset the dictionaries
           fileLabel.Text := 'File:';
           resetButton.Enabled := false;
+          tagSelector.Enabled := false;
+          EditTagBtn.enabled := false;
+          DelTagBtn.Enabled := false;
           patternsMemo.Lines.Clear;
           responsesMemo.Lines.Clear;
+          patternsMemo.Enabled := false;
+          responsesMemo.Enabled := false;
           tagSelector.Items.Clear;
           myDict.free;
        end;
@@ -207,7 +233,12 @@ procedure TmainForm.tagSelectorChange(Sender: TObject);
 begin
   if tagSelector.ItemIndex > -1 then
     begin
-
+      if myDict <> nil then
+      begin
+        myDict.TryGetValue(tagSelector.Items[tagSelector.ItemIndex],anIntent);
+        patternsMemo.Lines.Assign(anIntent.patterns);
+        responsesMemo.Lines.Assign(anIntent.responses);
+      end;
     end;
 end;
 
