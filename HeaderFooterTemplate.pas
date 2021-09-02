@@ -138,23 +138,27 @@ end;
 procedure TmainForm.Populate;
 var
   i: integer;
+  Key: string;
 begin
   fileLabel.Text := 'File: ' + OpenDialog1.FileName;
   resetButton.Enabled := true;
   WalkIt;
-  for var Enum in MyDict do
-    if Enum.Key <> '' then
-      tagSelector.Items.add(Enum.key);
+  i := 0;
+  for Key in myDict.Keys do
+  begin
+    tagSelector.Items.Append(Key);
+    Inc(i);
+  end;
   tagSelector.Enabled := true;
-  tagSelector.ItemIndex := 1;
+  tagSelector.ItemIndex := 0;
   tagSelector.TextAlign := TTextAlign.Leading;
+  patternsMemo.Lines.Assign(myDict[tagSelector.Items[tagSelector.ItemIndex]].patterns);
+  responsesMemo.Lines.Assign(myDict[tagSelector.Items[tagSelector.ItemIndex]].responses);
   EditTagBtn.enabled := true;
   DelTagBtn.Enabled := true;
+  saveButton.Enabled := true;
   patternsMemo.Enabled := true;
   responsesMemo.Enabled := true;
-  myDict.TryGetValue(tagSelector.Items[tagSelector.ItemIndex],anIntent);
-  patternsMemo.Lines.Assign(anIntent.patterns);
-  responsesMemo.Lines.Assign(anIntent.responses);
 end;
 
 procedure TmainForm.AboutBtnClick(Sender: TObject);
@@ -197,6 +201,7 @@ begin
           tagSelector.Enabled := false;
           EditTagBtn.enabled := false;
           DelTagBtn.Enabled := false;
+          saveButton.Enabled := false;
           patternsMemo.Lines.Clear;
           responsesMemo.Lines.Clear;
           patternsMemo.Enabled := false;
