@@ -42,6 +42,15 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="intents.json" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>HeaderFooterApplication.app\Contents\Resources\StartUp\</RemoteDir>
+            <RemoteName>intents.json</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="OSX64\Debug\HeaderFooterApplication" Condition="'$(Config)'=='Debug'">
             <RemoteDir>HeaderFooterApplication.app\Contents\MacOS\</RemoteDir>
             <RemoteName>HeaderFooterApplication</RemoteName>
