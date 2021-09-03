@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.ExtCtrls, FMX.Controls.Presentation, FMX.ScrollBox, FMX.Memo, FMX.DialogService,
   FMX.DialogService.Sync, FMX.Memo.Types, FMX.Platform, System.JSON, System.IOUtils,
-  WinJson, Generics.Collections, System.JSON.Readers, System.JSON.Types;
+  WinJson, Generics.Collections, System.JSON.Readers, System.JSON.Types, u_urlOpen;
 
 type
   TmainForm = class(TForm)
@@ -57,6 +57,7 @@ var
   JsonValues: TJson;
   myDict: TDictionary<string, TIntent>;
   anIntent: TIntent;
+  urlOpen: tUrlOpen;
 
 implementation
 
@@ -184,11 +185,10 @@ begin
 end;
 
 procedure TmainForm.helpButtonClick(Sender: TObject);
-var
-  URL: string;
 begin
-  URL := 'file://intents-editor-app.html';
-  // ShellExecute(0, 'open', PChar(URL), nil, nil, SW_SHOWNORMAL);
+//  urlOpen.Create;
+//  urlOpen.Open('http://www.iiusatechai.com/intents-editor-app.html');
+//  urlOpen.free;
 end;
 
 procedure TmainForm.resetButtonClick(Sender: TObject);
