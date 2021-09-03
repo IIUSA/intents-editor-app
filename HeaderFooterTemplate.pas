@@ -57,7 +57,6 @@ var
   JsonValues: TJson;
   myDict: TDictionary<string, TIntent>;
   anIntent: TIntent;
-  urlOpen: tUrlOpen;
 
 implementation
 
@@ -186,9 +185,7 @@ end;
 
 procedure TmainForm.helpButtonClick(Sender: TObject);
 begin
-//  urlOpen.Create;
-//  urlOpen.Open('http://www.iiusatechai.com/intents-editor-app.html');
-//  urlOpen.free;
+  tUrlOpen.Open('http://www.iiusatechai.com/intents-editor-app.html');
 end;
 
 procedure TmainForm.resetButtonClick(Sender: TObject);
