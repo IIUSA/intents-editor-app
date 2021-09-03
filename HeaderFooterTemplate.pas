@@ -32,12 +32,12 @@ type
     procedure openButtonClick(Sender: TObject);
     procedure saveButtonClick(Sender: TObject);
     procedure resetButtonClick(Sender: TObject);
-    procedure OpenDialog1Close(Sender: TObject);
     procedure AboutBtnClick(Sender: TObject);
     procedure DelTagBtnClick(Sender: TObject);
     procedure AddTagBtnClick(Sender: TObject);
     procedure tagSelectorChange(Sender: TObject);
     procedure EditTagBtnClick(Sender: TObject);
+    procedure helpButtonClick(Sender: TObject);
   private
     { Private declarations }
     procedure Populate;
@@ -74,7 +74,7 @@ var
   JSONReader: TJsonTextReader;
   tr: TStringReader;
 begin
-  AssignFile(theFile,OpenDialog1.FileName);
+  AssignFile(theFile,OpenDialog1.Filename);
   Reset(theFile);
   myStringBuilder := TStringBuilder.Create(FileSize(theFile));
   while not Eof(theFile) do
@@ -137,23 +137,18 @@ end;
 
 procedure TmainForm.Populate;
 var
-  i: integer;
   Key: string;
 begin
-  fileLabel.Text := 'File: ' + OpenDialog1.FileName;
-  resetButton.Enabled := true;
+  fileLabel.Text := 'File: ' + OpenDialog1.Filename;
   WalkIt;
-  i := 0;
   for Key in myDict.Keys do
-  begin
     tagSelector.Items.Append(Key);
-    Inc(i);
-  end;
-  tagSelector.Enabled := true;
   tagSelector.ItemIndex := 0;
-  tagSelector.TextAlign := TTextAlign.Leading;
   patternsMemo.Lines.Assign(myDict[tagSelector.Items[tagSelector.ItemIndex]].patterns);
   responsesMemo.Lines.Assign(myDict[tagSelector.Items[tagSelector.ItemIndex]].responses);
+  tagSelector.Enabled := true;
+  tagSelector.TextAlign := TTextAlign.Leading;
+  resetButton.Enabled := true;
   EditTagBtn.enabled := true;
   DelTagBtn.Enabled := true;
   saveButton.Enabled := true;
@@ -188,6 +183,14 @@ begin
   TDialogService.InputQuery('Edit tag name',['Tag name:'],[''],nil);
 end;
 
+procedure TmainForm.helpButtonClick(Sender: TObject);
+var
+  URL: string;
+begin
+  URL := 'file://intents-editor-app.html';
+  // ShellExecute(0, 'open', PChar(URL), nil, nil, SW_SHOWNORMAL);
+end;
+
 procedure TmainForm.resetButtonClick(Sender: TObject);
 begin
   TDialogService.MessageDialog('Do you really want to clear the workspace?',
@@ -215,17 +218,15 @@ end;
 procedure TmainForm.openButtonClick(Sender: TObject);
 begin
     OpenDialog1.Filter := 'Intent files (*.json)|*.json';
-    OpenDialog1.Execute;
-end;
-
-procedure TmainForm.OpenDialog1Close(Sender: TObject);
-begin
-  with TJsonParser.Create do
+    if OpenDialog1.Execute then
     begin
-      JsonValues := ParseUtf8File(OpenDialog1.FileName);
+      with TJsonParser.Create do
+      begin
+        JsonValues := ParseUtf8File(OpenDialog1.FileName);
+      end;
+      if (JsonValues <> nil) then // and first tag is "intents"
+        Populate;
     end;
-  if (JsonValues <> nil) then // and first tag is "intents"
-    Populate;
 end;
 
 procedure TmainForm.saveButtonClick(Sender: TObject);
