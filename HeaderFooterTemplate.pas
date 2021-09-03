@@ -185,7 +185,7 @@ end;
 
 procedure TmainForm.helpButtonClick(Sender: TObject);
 begin
-  tUrlOpen.Open('http://www.iiusatechai.com/intents-editor-app.html');
+  tUrlOpen.Open('https://www.iiusatechai.com/intent-editor-app.html');
 end;
 
 procedure TmainForm.resetButtonClick(Sender: TObject);

@@ -6,7 +6,7 @@
         <MainSource>IntentsEditor.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <Platform Condition="'$(Platform)'==''">OSX64</Platform>
         <TargetedPlatforms>37915</TargetedPlatforms>
         <AppType>Application</AppType>
     </PropertyGroup>
@@ -393,7 +393,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="OSX64\Debug\HeaderFooterApplication.info.plist" Configuration="Debug" Class="ProjectOSXInfoPList">
+                <DeployFile LocalName="OSX64\Debug\IntentsEditor.info.plist" Configuration="Debug" Class="ProjectOSXInfoPList">
                     <Platform Name="OSX64">
                         <RemoteName>Info.plist</RemoteName>
                         <Overwrite>true</Overwrite>
@@ -419,7 +419,7 @@
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\delphi_PROJECTICNS.icns" Configuration="Debug" Class="ProjectOSXResource">
                     <Platform Name="OSX64">
-                        <RemoteName>HeaderFooterApplication.icns</RemoteName>
+                        <RemoteName>IntentsEditor.icns</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -466,12 +466,6 @@
                 </DeployFile>
                 <DeployFile LocalName="Android64\Debug\styles.xml" Configuration="Debug" Class="AndroidSplashStyles">
                     <Platform Name="Android64">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Win64\Debug\IntentsEditor.rsm" Configuration="Debug" Class="DebugSymbols">
-                    <Platform Name="Win64">
-                        <RemoteName>IntentsEditor.rsm</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -699,9 +693,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="OSX64\Debug\HeaderFooterApplication.dSYM" Configuration="Debug" Class="ProjectOSXDebug">
+                <DeployFile LocalName="OSX64\Debug\IntentsEditor.dSYM" Configuration="Debug" Class="ProjectOSXDebug">
                     <Platform Name="OSX64">
-                        <RemoteName>HeaderFooterApplication</RemoteName>
+                        <RemoteName>IntentsEditor</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -717,7 +711,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="OSX64\Debug\HeaderFooterApplication.entitlements" Configuration="Debug" Class="ProjectOSXEntitlements">
+                <DeployFile LocalName="OSX64\Debug\IntentsEditor.entitlements" Configuration="Debug" Class="ProjectOSXEntitlements">
                     <Platform Name="OSX64">
                         <Overwrite>true</Overwrite>
                     </Platform>
