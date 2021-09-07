@@ -26,7 +26,7 @@ object mainForm: TmainForm
     Size.Width = 65.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 4
+    TabOrder = 1
     Text = 'Reset'
     OnClick = resetButtonClick
   end
@@ -37,7 +37,7 @@ object mainForm: TmainForm
     Size.Width = 65.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 5
+    TabOrder = 3
     Text = 'Open'
     OnClick = openButtonClick
   end
@@ -48,7 +48,7 @@ object mainForm: TmainForm
     Size.Width = 65.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 7
+    TabOrder = 4
     Text = 'Help'
     OnClick = helpButtonClick
   end
@@ -60,7 +60,7 @@ object mainForm: TmainForm
     Size.Width = 65.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 8
+    TabOrder = 2
     Text = 'Save'
     OnClick = saveButtonClick
   end
@@ -71,32 +71,34 @@ object mainForm: TmainForm
     Size.Width = 210.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 9
+    TabOrder = 6
     OnChange = tagSelectorChange
   end
   object patternsMemo: TMemo
     Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
     DataDetectorTypes = []
+    OnChangeTracking = patternsMemoChangeTracking
     Enabled = False
     Position.X = 11.000000000000000000
     Position.Y = 128.000000000000000000
     Size.Width = 334.000000000000000000
     Size.Height = 176.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 11
+    TabOrder = 10
     Viewport.Width = 330.000000000000000000
     Viewport.Height = 172.000000000000000000
   end
   object responsesMemo: TMemo
     Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
     DataDetectorTypes = []
+    OnChangeTracking = onResponsesMemoChangeTracking
     Enabled = False
     Position.X = 11.000000000000000000
     Position.Y = 328.000000000000000000
     Size.Width = 334.000000000000000000
     Size.Height = 177.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 10
+    TabOrder = 11
     Viewport.Width = 330.000000000000000000
     Viewport.Height = 173.000000000000000000
   end
@@ -108,6 +110,7 @@ object mainForm: TmainForm
     Size.PlatformDefault = False
     Text = 'File: '
     TabOrder = 12
+    TabStop = False
   end
   object tagLabel: TLabel
     Position.X = 8.000000000000000000
@@ -129,6 +132,7 @@ object mainForm: TmainForm
     ParentShowHint = False
     ShowHint = True
     TabOrder = 15
+    TabStop = False
   end
   object responsesLabel: TLabel
     Hint = 'Enter responses one per line'
@@ -141,6 +145,7 @@ object mainForm: TmainForm
     ParentShowHint = False
     ShowHint = True
     TabOrder = 14
+    TabStop = False
   end
   object OpenDialog1: TOpenDialog
     DefaultExt = '*.json'
@@ -164,7 +169,7 @@ object mainForm: TmainForm
     Size.Width = 32.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 3
+    TabOrder = 8
     Text = 'Add'
     OnClick = AddTagBtnClick
   end
@@ -176,7 +181,7 @@ object mainForm: TmainForm
     Size.Width = 34.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 1
+    TabOrder = 9
     Text = 'Del'
     OnClick = DelTagBtnClick
   end
@@ -187,7 +192,7 @@ object mainForm: TmainForm
     Size.Width = 65.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 6
+    TabOrder = 5
     Text = 'About'
     OnClick = AboutBtnClick
   end
@@ -199,7 +204,7 @@ object mainForm: TmainForm
     Size.Width = 32.000000000000000000
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 2
+    TabOrder = 7
     Text = 'Edit'
     OnClick = EditTagBtnClick
   end

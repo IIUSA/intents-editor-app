@@ -38,6 +38,8 @@ type
     procedure tagSelectorChange(Sender: TObject);
     procedure EditTagBtnClick(Sender: TObject);
     procedure helpButtonClick(Sender: TObject);
+    procedure onResponsesMemoChangeTracking(Sender: TObject);
+    procedure patternsMemoChangeTracking(Sender: TObject);
   private
     { Private declarations }
     procedure Populate;
@@ -135,6 +137,8 @@ begin
   end;
 end;
 
+// From the selected tag, populates the various fields and edit areas
+
 procedure TmainForm.Populate;
 var
   Key: string;
@@ -156,15 +160,22 @@ begin
   responsesMemo.Enabled := true;
 end;
 
+// Simple about button
+
 procedure TmainForm.AboutBtnClick(Sender: TObject);
 begin
   TDialogService.ShowMessage('Intents Editor v0.0.1');
 end;
 
+// Handles request to add a new tag. Note that the patterns and responses
+// are created with one dummy tag required for the implementation
+
 procedure TmainForm.AddTagBtnClick(Sender: TObject);
 begin
   TDialogService.InputQuery('New tag',['Tag name:'],[''],nil);
 end;
+
+// Handles a request to delete the currently selected tag.
 
 procedure TmainForm.DelTagBtnClick(Sender: TObject);
 begin
@@ -178,15 +189,22 @@ begin
     end);
 end;
 
+// Handles a request to change the currently selected tag.
+
 procedure TmainForm.EditTagBtnClick(Sender: TObject);
 begin
   TDialogService.InputQuery('Edit tag name',['Tag name:'],[''],nil);
 end;
 
+// The help button points to a URL on the iiusatechai web site
+// that contains the help content
+
 procedure TmainForm.helpButtonClick(Sender: TObject);
 begin
   tUrlOpen.Open('https://www.iiusatechai.com/intent-editor-app.html');
 end;
+
+// Handler for the reset button
 
 procedure TmainForm.resetButtonClick(Sender: TObject);
 begin
@@ -212,6 +230,9 @@ begin
     end);
 end;
 
+// On open, try to initially parse the json file. Continue to populate
+// onlyi if the parsing is successful
+
 procedure TmainForm.openButtonClick(Sender: TObject);
 begin
     OpenDialog1.Filter := 'Intent files (*.json)|*.json';
@@ -221,16 +242,35 @@ begin
       begin
         JsonValues := ParseUtf8File(OpenDialog1.FileName);
       end;
-      if (JsonValues <> nil) then // and first tag is "intents"
+      if (JsonValues <> nil) then
         Populate;
     end;
 end;
+
+procedure TmainForm.patternsMemoChangeTracking(Sender: TObject);
+begin
+  if (myDict <> nil) then
+       myDict[tagSelector.Items[tagSelector.ItemIndex]].patterns.assign(patternsMemo.Lines);
+end;
+
+// On any change to a memo field, the entire memo's
+// contents are saved to the dictionary
+
+procedure TmainForm.onResponsesMemoChangeTracking(Sender: TObject);
+begin
+  if (myDict <> nil) then
+        myDict[tagSelector.Items[tagSelector.ItemIndex]].responses.assign(responsesMemo.Lines);
+end;
+
+// Handle the request to save the intent to an existing or new filename
 
 procedure TmainForm.saveButtonClick(Sender: TObject);
 begin
     SaveDialog1.Filter := 'Intent files (*.json)|*.json';
     SaveDialog1.Execute;
 end;
+
+// Triggered when the user selects a tag from the dropdown menu
 
 procedure TmainForm.tagSelectorChange(Sender: TObject);
 begin
