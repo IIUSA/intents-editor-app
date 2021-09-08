@@ -337,12 +337,12 @@ begin
          jsonWriter.WritePropertyName('patterns');
            jsonWriter.WriteStartArray;
            for i := 0 to patterns.Count-1 do
-             jsonWriter.WriteValue(patterns[i]);
+             if patterns[i] > '' then jsonWriter.WriteValue(patterns[i]);
            jsonWriter.WriteEndArray;
          jsonWriter.WritePropertyName('responses');
            jsonWriter.WriteStartArray;
            for i := 0 to responses.Count-1 do
-             jsonWriter.WriteValue(responses[i]);
+             if responses[i] > '' then jsonWriter.WriteValue(responses[i]);
            jsonWriter.WriteEndArray;
         jsonWriter.WriteEndObject;
       end;
