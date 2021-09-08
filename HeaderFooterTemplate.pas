@@ -7,7 +7,8 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.ExtCtrls, FMX.Controls.Presentation, FMX.ScrollBox, FMX.Memo, FMX.DialogService,
   FMX.DialogService.Sync, FMX.Memo.Types, FMX.Platform, System.JSON, System.IOUtils,
-  WinJson, Generics.Collections, System.JSON.Readers, System.JSON.Types, u_urlOpen;
+  WinJson, Generics.Collections, System.JSON.Readers, System.JSON.Writers,
+  System.JSON.Types, u_urlOpen;
 
 type
   TmainForm = class(TForm)
@@ -184,8 +185,8 @@ begin
         else begin
           anIntent.responses := TStringlist.Create;
           anIntent.patterns := TStringlist.Create;
-          anIntent.responses.Add('<Dummy response>');
-          anIntent.patterns.Add('<Dummy pattern>');
+          anIntent.responses.Add('<Dummy response, please edit me.>');
+          anIntent.patterns.Add('<Dummy pattern, please edit me.>');
           if myDict = nil then
             myDict := TObjectDictionary<string,TIntent>.Create(1);
           myDict.Add(AValues[0],anIntent);
@@ -211,7 +212,9 @@ begin
     end);
 end;
 
-// Handles a request to change the currently selected tag.
+// Handles a request to change the currently selected tag by using
+// Extract to get the data and remove it from the dictionary,
+// then adding it back to the dictionary with the new tag name as the key
 
 procedure TmainForm.editTagBtnClick(Sender: TObject);
 type
@@ -301,11 +304,59 @@ begin
 end;
 
 // Handle the request to save the intent to an existing or new filename
+// Dialog will prompt for overwrite if the file exists
 
 procedure TmainForm.saveBtnClick(Sender: TObject);
+var
+  stringWriter: TStringWriter;
+  jsonWriter: TJsonTextWriter;
+  key: string;
+  i: integer;
+  patterns, responses: TStringList;
+  theFile: TextFile;
 begin
     SaveDialog1.Filter := 'Intent files (*.json)|*.json';
-    SaveDialog1.Execute;
+    SaveDialog1.InitialDir := GetCurrentDir;
+    if SaveDialog1.Execute then
+    begin
+      stringWriter := TStringWriter.Create;
+      jsonWriter := TJsonTextWriter.Create(stringWriter);
+      patterns := TStringList.Create;
+      responses := TStringList.Create;
+      jsonWriter.Formatting := TJsonFormatting.Indented;
+      jsonWriter.WriteStartObject;
+      jsonWriter.WritePropertyName('intents');
+      jsonWriter.WriteStartArray;
+      for key in myDict.Keys do
+      begin
+        jsonWriter.WriteStartObject;
+         jsonWriter.WritePropertyName('tag');
+         jsonWriter.WriteValue(key);
+         patterns.Assign(myDict[key].patterns);
+         responses.Assign(myDict[key].responses);
+         jsonWriter.WritePropertyName('patterns');
+           jsonWriter.WriteStartArray;
+           for i := 0 to patterns.Count-1 do
+             jsonWriter.WriteValue(patterns[i]);
+           jsonWriter.WriteEndArray;
+         jsonWriter.WritePropertyName('responses');
+           jsonWriter.WriteStartArray;
+           for i := 0 to responses.Count-1 do
+             jsonWriter.WriteValue(responses[i]);
+           jsonWriter.WriteEndArray;
+        jsonWriter.WriteEndObject;
+      end;
+      jsonWriter.WriteEndArray;
+      jsonWriter.WriteEndObject;
+      AssignFile(theFile,SaveDialog1.Filename);
+      Rewrite(theFile);
+      WriteLn(theFile,stringWriter.ToString);
+      CloseFile(theFile);
+      stringWriter.Free;
+      jsonWriter.Free;
+      patterns.Free;
+      responses.Free;
+    end;
 end;
 
 // Triggered when the user selects a tag from the dropdown menu

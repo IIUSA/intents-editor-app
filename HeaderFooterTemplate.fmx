@@ -149,7 +149,6 @@ object mainForm: TmainForm
   end
   object OpenDialog1: TOpenDialog
     DefaultExt = '*.json'
-    FileName = 'C:\Users\Juan\Documents\murdocca\intents-editor-app\intents.json'
     Filter = 'Json Intent Files|*.json'
     Title = 'Open an Intents file'
     Left = 304
@@ -158,6 +157,7 @@ object mainForm: TmainForm
   object SaveDialog1: TSaveDialog
     DefaultExt = '*.json'
     Filter = 'Json Intents file|*.json'
+    Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
     Title = 'Save this Intent definition'
     Left = 264
     Top = 32
