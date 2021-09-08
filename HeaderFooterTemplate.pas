@@ -189,6 +189,7 @@ begin
           if myDict = nil then
             myDict := TObjectDictionary<string,TIntent>.Create(1);
           myDict.Add(AValues[0],anIntent);
+  //        OpenDialog1.FileName := 'New intent.json';
           Populate;
         end;
        end;
@@ -246,7 +247,7 @@ begin
           patternsMemo.Enabled := false;
           responsesMemo.Enabled := false;
           tagSelector.Items.Clear;
-          myDict.free;
+          FreeAndNil(myDict);
        end;
     end);
 end;
