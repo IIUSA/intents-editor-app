@@ -214,8 +214,21 @@ end;
 // Handles a request to change the currently selected tag.
 
 procedure TmainForm.editTagBtnClick(Sender: TObject);
+type
+  TMyKey = string;
+  TMyValue = TIntent;
+var
+  Pair: TPair<TMyKey,TMyValue>;
 begin
-  TDialogService.InputQuery('Rename tag',['New name:'],[''],nil);
+  TDialogService.InputQuery('Rename tag',['New name:'],[''],
+  procedure (const AResult: TModalResult; const AValues: array of string) begin
+       if AResult = mrOK then
+       begin
+         Pair := myDict.ExtractPair(tagSelector.Items[tagSelector.ItemIndex]);
+         myDict.Add(AValues[0],Pair.Value);
+         Populate;
+       end;
+  end);
 end;
 
 // The help Btn points to a URL on the iiusatechai web site
