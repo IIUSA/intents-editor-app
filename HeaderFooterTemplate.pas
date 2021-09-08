@@ -12,10 +12,10 @@ uses
 type
   TmainForm = class(TForm)
     Footer: TToolBar;
-    resetButton: TButton;
-    openButton: TButton;
-    helpButton: TButton;
-    saveButton: TButton;
+    resetBtn: TButton;
+    openBtn: TButton;
+    helpBtn: TButton;
+    saveBtn: TButton;
     tagSelector: TPopupBox;
     patternsMemo: TMemo;
     responsesMemo: TMemo;
@@ -25,19 +25,19 @@ type
     responsesLabel: TLabel;
     OpenDialog1: TOpenDialog;
     SaveDialog1: TSaveDialog;
-    AddTagBtn: TButton;
-    DelTagBtn: TButton;
-    AboutBtn: TButton;
-    EditTagBtn: TButton;
-    procedure openButtonClick(Sender: TObject);
-    procedure saveButtonClick(Sender: TObject);
-    procedure resetButtonClick(Sender: TObject);
-    procedure AboutBtnClick(Sender: TObject);
-    procedure DelTagBtnClick(Sender: TObject);
-    procedure AddTagBtnClick(Sender: TObject);
+    addTagBtn: TButton;
+    delTagBtn: TButton;
+    aboutBtn: TButton;
+    editTagBtn: TButton;
+    procedure openBtnClick(Sender: TObject);
+    procedure saveBtnClick(Sender: TObject);
+    procedure resetBtnClick(Sender: TObject);
+    procedure aboutBtnClick(Sender: TObject);
+    procedure delTagBtnClick(Sender: TObject);
+    procedure addTagBtnClick(Sender: TObject);
     procedure tagSelectorChange(Sender: TObject);
-    procedure EditTagBtnClick(Sender: TObject);
-    procedure helpButtonClick(Sender: TObject);
+    procedure editTagBtnClick(Sender: TObject);
+    procedure helpBtnClick(Sender: TObject);
     procedure onResponsesMemoChangeTracking(Sender: TObject);
     procedure patternsMemoChangeTracking(Sender: TObject);
   private
@@ -57,7 +57,7 @@ type
 var
   mainForm: TmainForm;
   JsonValues: TJson;
-  myDict: TDictionary<string, TIntent>;
+  myDict: TObjectDictionary<string, TIntent>;
   anIntent: TIntent;
 
 implementation
@@ -96,7 +96,7 @@ begin
       ShowMessage('This file is not an intents definition.')
     else
     begin
-      myDict := TDictionary<string,TIntent>.Create(1);
+      myDict := TObjectDictionary<string,TIntent>.Create(1);
       while Read do
         case JSONReader.TokenType of
           TJSONToken.PropertyName:
@@ -144,7 +144,7 @@ var
   Key: string;
 begin
   fileLabel.Text := 'File: ' + OpenDialog1.Filename;
-  WalkIt;
+  tagSelector.Items.Clear;
   for Key in myDict.Keys do
     tagSelector.Items.Append(Key);
   tagSelector.ItemIndex := 0;
@@ -152,17 +152,17 @@ begin
   responsesMemo.Lines.Assign(myDict[tagSelector.Items[tagSelector.ItemIndex]].responses);
   tagSelector.Enabled := true;
   tagSelector.TextAlign := TTextAlign.Leading;
-  resetButton.Enabled := true;
+  resetBtn.Enabled := true;
   EditTagBtn.enabled := true;
   DelTagBtn.Enabled := true;
-  saveButton.Enabled := true;
+  saveBtn.Enabled := true;
   patternsMemo.Enabled := true;
   responsesMemo.Enabled := true;
 end;
 
-// Simple about button
+// Simple about Btn
 
-procedure TmainForm.AboutBtnClick(Sender: TObject);
+procedure TmainForm.aboutBtnClick(Sender: TObject);
 begin
   TDialogService.ShowMessage('Intents Editor v0.0.1');
 end;
@@ -170,43 +170,44 @@ end;
 // Handles request to add a new tag. Note that the patterns and responses
 // are created with one dummy tag required for the implementation
 
-procedure TmainForm.AddTagBtnClick(Sender: TObject);
+procedure TmainForm.addTagBtnClick(Sender: TObject);
 begin
   TDialogService.InputQuery('New tag',['Tag name:'],[''],nil);
 end;
 
 // Handles a request to delete the currently selected tag.
 
-procedure TmainForm.DelTagBtnClick(Sender: TObject);
+procedure TmainForm.delTagBtnClick(Sender: TObject);
 begin
   TDialogService.MessageDialog('Delete this tag and its contents?',
     TMsgDlgType.mtWarning, mbYesNo, TMsgDlgBtn.mbNo, 0,
     procedure (const AResult: TModalResult) begin
        if AResult = mrYes then
        begin
-          // Clear it
+          myDict.Remove(tagSelector.Items[tagSelector.ItemIndex]);
+          Populate;
        end;
     end);
 end;
 
 // Handles a request to change the currently selected tag.
 
-procedure TmainForm.EditTagBtnClick(Sender: TObject);
+procedure TmainForm.editTagBtnClick(Sender: TObject);
 begin
-  TDialogService.InputQuery('Edit tag name',['Tag name:'],[''],nil);
+  TDialogService.InputQuery('Rename tag',['New name:'],[''],nil);
 end;
 
-// The help button points to a URL on the iiusatechai web site
+// The help Btn points to a URL on the iiusatechai web site
 // that contains the help content
 
-procedure TmainForm.helpButtonClick(Sender: TObject);
+procedure TmainForm.helpBtnClick(Sender: TObject);
 begin
   tUrlOpen.Open('https://www.iiusatechai.com/intent-editor-app.html');
 end;
 
-// Handler for the reset button
+// Handler for the reset Btn
 
-procedure TmainForm.resetButtonClick(Sender: TObject);
+procedure TmainForm.resetBtnClick(Sender: TObject);
 begin
   TDialogService.MessageDialog('Do you really want to clear the workspace?',
     TMsgDlgType.mtWarning, mbYesNo, TMsgDlgBtn.mbNo, 0,
@@ -215,11 +216,11 @@ begin
        begin
           // Put code here to reset the dictionaries
           fileLabel.Text := 'File:';
-          resetButton.Enabled := false;
+          resetBtn.Enabled := false;
           tagSelector.Enabled := false;
           EditTagBtn.enabled := false;
           DelTagBtn.Enabled := false;
-          saveButton.Enabled := false;
+          saveBtn.Enabled := false;
           patternsMemo.Lines.Clear;
           responsesMemo.Lines.Clear;
           patternsMemo.Enabled := false;
@@ -233,7 +234,7 @@ end;
 // On open, try to initially parse the json file. Continue to populate
 // onlyi if the parsing is successful
 
-procedure TmainForm.openButtonClick(Sender: TObject);
+procedure TmainForm.openBtnClick(Sender: TObject);
 begin
     OpenDialog1.Filter := 'Intent files (*.json)|*.json';
     if OpenDialog1.Execute then
@@ -243,7 +244,10 @@ begin
         JsonValues := ParseUtf8File(OpenDialog1.FileName);
       end;
       if (JsonValues <> nil) then
+      begin
+        WalkIt;
         Populate;
+      end;
     end;
 end;
 
@@ -264,7 +268,7 @@ end;
 
 // Handle the request to save the intent to an existing or new filename
 
-procedure TmainForm.saveButtonClick(Sender: TObject);
+procedure TmainForm.saveBtnClick(Sender: TObject);
 begin
     SaveDialog1.Filter := 'Intent files (*.json)|*.json';
     SaveDialog1.Execute;

@@ -18,7 +18,7 @@ object mainForm: TmainForm
     StyleLookup = 'bottomtoolbar'
     TabOrder = 0
   end
-  object resetButton: TButton
+  object resetBtn: TButton
     Enabled = False
     Hint = 'Clear and start fresh'
     Position.X = 9.000000000000000000
@@ -28,9 +28,9 @@ object mainForm: TmainForm
     Size.PlatformDefault = False
     TabOrder = 1
     Text = 'Reset'
-    OnClick = resetButtonClick
+    OnClick = resetBtnClick
   end
-  object openButton: TButton
+  object openBtn: TButton
     Hint = 'Open an intents JSON file'
     Position.X = 143.000000000000000000
     Position.Y = 14.000000000000000000
@@ -39,9 +39,9 @@ object mainForm: TmainForm
     Size.PlatformDefault = False
     TabOrder = 3
     Text = 'Open'
-    OnClick = openButtonClick
+    OnClick = openBtnClick
   end
-  object helpButton: TButton
+  object helpBtn: TButton
     Hint = 'Need some help?'
     Position.X = 210.000000000000000000
     Position.Y = 14.000000000000000000
@@ -50,9 +50,9 @@ object mainForm: TmainForm
     Size.PlatformDefault = False
     TabOrder = 4
     Text = 'Help'
-    OnClick = helpButtonClick
+    OnClick = helpBtnClick
   end
-  object saveButton: TButton
+  object saveBtn: TButton
     Enabled = False
     Hint = 'Save this intent'
     Position.X = 76.000000000000000000
@@ -62,7 +62,7 @@ object mainForm: TmainForm
     Size.PlatformDefault = False
     TabOrder = 2
     Text = 'Save'
-    OnClick = saveButtonClick
+    OnClick = saveBtnClick
   end
   object tagSelector: TPopupBox
     Enabled = False
@@ -162,7 +162,7 @@ object mainForm: TmainForm
     Left = 264
     Top = 32
   end
-  object AddTagBtn: TButton
+  object addTagBtn: TButton
     Hint = 'Add new tag'
     Position.X = 277.000000000000000000
     Position.Y = 78.000000000000000000
@@ -171,9 +171,9 @@ object mainForm: TmainForm
     Size.PlatformDefault = False
     TabOrder = 8
     Text = 'Add'
-    OnClick = AddTagBtnClick
+    OnClick = addTagBtnClick
   end
-  object DelTagBtn: TButton
+  object delTagBtn: TButton
     Enabled = False
     Hint = 'Delete this tag'
     Position.X = 311.000000000000000000
@@ -183,9 +183,9 @@ object mainForm: TmainForm
     Size.PlatformDefault = False
     TabOrder = 9
     Text = 'Del'
-    OnClick = DelTagBtnClick
+    OnClick = delTagBtnClick
   end
-  object AboutBtn: TButton
+  object aboutBtn: TButton
     Hint = 'About this app'
     Position.X = 277.000000000000000000
     Position.Y = 14.000000000000000000
@@ -194,9 +194,9 @@ object mainForm: TmainForm
     Size.PlatformDefault = False
     TabOrder = 5
     Text = 'About'
-    OnClick = AboutBtnClick
+    OnClick = aboutBtnClick
   end
-  object EditTagBtn: TButton
+  object editTagBtn: TButton
     Enabled = False
     Hint = 'Edit this tag'#39's name'
     Position.X = 244.000000000000000000
@@ -206,6 +206,6 @@ object mainForm: TmainForm
     Size.PlatformDefault = False
     TabOrder = 7
     Text = 'Edit'
-    OnClick = EditTagBtnClick
+    OnClick = editTagBtnClick
   end
 end
