@@ -169,10 +169,30 @@ end;
 
 // Handles request to add a new tag. Note that the patterns and responses
 // are created with one dummy tag required for the implementation
+// If there are no intents loaded the dictionary is created
 
 procedure TmainForm.addTagBtnClick(Sender: TObject);
 begin
-  TDialogService.InputQuery('New tag',['Tag name:'],[''],nil);
+  TDialogService.InputQuery('New tag',['Tag name:'],[''],
+    procedure (const AResult: TModalResult; const AValues: array of string) begin
+       if AResult = mrOK then
+       begin
+        if AValues[0] = '' then
+          TDialogService.ShowMessage('Tag name cannot be blank.')
+        else if tagSelector.Items.IndexOf(AValues[0]) > -1 then
+          TDialogService.ShowMessage('Tag already exists.')
+        else begin
+          anIntent.responses := TStringlist.Create;
+          anIntent.patterns := TStringlist.Create;
+          anIntent.responses.Add('<Dummy response>');
+          anIntent.patterns.Add('<Dummy pattern>');
+          if myDict = nil then
+            myDict := TObjectDictionary<string,TIntent>.Create(1);
+          myDict.Add(AValues[0],anIntent);
+          Populate;
+        end;
+       end;
+    end);
 end;
 
 // Handles a request to delete the currently selected tag.
