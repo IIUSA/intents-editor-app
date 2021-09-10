@@ -67,7 +67,7 @@ implementation
 
 // Walkit opens the json file, checks that it is an intents file and
 // reads the various pattern and response groups into a dictionary, with
-// the tag as the dictionary key
+// the tag as the dictionary key.
 
 procedure TmainForm.WalkIt;
 var
@@ -144,7 +144,7 @@ procedure TmainForm.Populate;
 var
   Key: string;
 begin
-  fileLabel.Text := 'File: ' + OpenDialog1.Filename;
+  fileLabel.Text := 'File: ' + ExtractFileName(OpenDialog1.Filename);
   tagSelector.Items.Clear;
   for Key in myDict.Keys do
     tagSelector.Items.Append(Key);
@@ -197,7 +197,8 @@ begin
     end);
 end;
 
-// Handles a request to delete the currently selected tag.
+// Handles a request to delete the currently selected tag by deleting it from
+// the dictionary and updating everything.
 
 procedure TmainForm.delTagBtnClick(Sender: TObject);
 begin
@@ -242,7 +243,8 @@ begin
   tUrlOpen.Open('https://www.iiusatechai.com/intent-editor-app.html');
 end;
 
-// Handler for the reset Btn
+// Handler for the reset button, clears everything to the default state
+// as if you had just opened the app.
 
 procedure TmainForm.resetBtnClick(Sender: TObject);
 begin
@@ -253,6 +255,7 @@ begin
        begin
           // Put code here to reset the dictionaries
           fileLabel.Text := 'File:';
+          OpenDialog1.FileName := '';
           resetBtn.Enabled := false;
           tagSelector.Enabled := false;
           EditTagBtn.enabled := false;
@@ -268,8 +271,8 @@ begin
     end);
 end;
 
-// On open, try to initially parse the json file. Continue to populate
-// onlyi if the parsing is successful
+// On open, try to initially parse the json file. Continue to walkit and
+// populate only if the parsing is successful.
 
 procedure TmainForm.openBtnClick(Sender: TObject);
 begin
@@ -284,18 +287,19 @@ begin
       begin
         WalkIt;
         Populate;
-      end;
+      end
+      else ShowMessage('I cannot parse this JSON file. Invalid JSON?')
     end;
 end;
+
+// On any change to a memo field, the entire memo's contents are
+// saved to the dictionary (one handler for each memo)
 
 procedure TmainForm.patternsMemoChangeTracking(Sender: TObject);
 begin
   if (myDict <> nil) then
        myDict[tagSelector.Items[tagSelector.ItemIndex]].patterns.assign(patternsMemo.Lines);
 end;
-
-// On any change to a memo field, the entire memo's
-// contents are saved to the dictionary
 
 procedure TmainForm.onResponsesMemoChangeTracking(Sender: TObject);
 begin
@@ -316,7 +320,13 @@ var
   theFile: TextFile;
 begin
     SaveDialog1.Filter := 'Intent files (*.json)|*.json';
-    SaveDialog1.InitialDir := GetCurrentDir;
+    if OpenDialog1.FileName > '' then
+    begin
+      SaveDialog1.InitialDir := ExtractFilePath(OpenDialog1.FileName);
+      SaveDialog1.FileName := ExtractFileName(OpenDialog1.FileName);
+    end
+    else
+      SaveDialog1.InitialDir := GetCurrentDir;
     if SaveDialog1.Execute then
     begin
       stringWriter := TStringWriter.Create;
@@ -360,6 +370,8 @@ begin
 end;
 
 // Triggered when the user selects a tag from the dropdown menu
+// If the dictionary has been populated it gets the intent patterns and responses
+// and populates the two editor controls.
 
 procedure TmainForm.tagSelectorChange(Sender: TObject);
 begin
