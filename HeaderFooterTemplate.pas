@@ -6,9 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.ExtCtrls, FMX.Controls.Presentation, FMX.ScrollBox, FMX.Memo, FMX.DialogService,
-  FMX.DialogService.Sync, FMX.Memo.Types, FMX.Platform, System.JSON, System.IOUtils,
-  WinJson, Generics.Collections, System.JSON.Readers, System.JSON.Writers,
-  System.JSON.Types, u_urlOpen;
+  FMX.Memo.Types, FMX.Platform, System.JSON, System.IOUtils, Generics.Collections,
+  System.JSON.Readers, System.JSON.Writers, System.JSON.Types, u_urlOpen, WinJSON;
 
 type
   TmainForm = class(TForm)
@@ -64,6 +63,7 @@ var
 implementation
 
 {$R *.fmx}
+{$R *.LgXhdpiPh.fmx ANDROID}
 
 // Walkit opens the json file, checks that it is an intents file and
 // reads the various pattern and response groups into a dictionary, with

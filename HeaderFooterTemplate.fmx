@@ -69,7 +69,7 @@ object mainForm: TmainForm
     Position.X = 31.000000000000000000
     Position.Y = 78.000000000000000000
     Size.Width = 210.000000000000000000
-    Size.Height = 22.000000000000000000
+    Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 6
     OnChange = tagSelectorChange

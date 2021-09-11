@@ -1,0 +1,88 @@
+inherited mainForm_LgXhdpiPh: TmainForm_LgXhdpiPh
+  ClientHeight = 695
+  ClientWidth = 450
+  DesignerMasterStyle = 0
+  inherited Footer: TToolBar
+    Position.Y = 647.000000000000000000
+    Size.Width = 450.000000000000000000
+  end
+  inherited resetBtn: TButton
+    Position.X = 1.000000000000000000
+    Size.Width = 80.000000000000000000
+    Size.Height = 27.000000000000000000
+  end
+  inherited openBtn: TButton
+    Position.X = 159.000000000000000000
+    Size.Width = 82.000000000000000000
+    Size.Height = 27.000000000000000000
+  end
+  inherited helpBtn: TButton
+    Position.X = 242.000000000000000000
+    Size.Width = 71.000000000000000000
+    Size.Height = 27.000000000000000000
+  end
+  inherited saveBtn: TButton
+    Position.X = 84.000000000000000000
+    Size.Width = 77.000000000000000000
+    Size.Height = 27.000000000000000000
+  end
+  inherited tagSelector: TPopupBox
+    Position.X = 64.000000000000000000
+    Size.Width = 161.000000000000000000
+  end
+  inherited patternsMemo: TMemo
+    Position.Y = 144.000000000000000000
+    Size.Width = 430.000000000000000000
+    Size.Height = 241.000000000000000000
+    Viewport.Width = 430.000000000000000000
+    Viewport.Height = 241.000000000000000000
+  end
+  inherited responsesMemo: TMemo
+    Position.Y = 416.000000000000000000
+    Size.Width = 422.000000000000000000
+    Size.Height = 265.000000000000000000
+    Viewport.Width = 422.000000000000000000
+    Viewport.Height = 265.000000000000000000
+  end
+  inherited tagLabel: TLabel
+    Size.Width = 49.000000000000000000
+    Size.Height = 25.000000000000000000
+  end
+  inherited patternsLabel: TLabel
+    Position.Y = 115.000000000000000000
+    Size.Width = 337.000000000000000000
+    Size.Height = 22.000000000000000000
+  end
+  inherited responsesLabel: TLabel
+    Position.Y = 388.000000000000000000
+    Size.Height = 29.000000000000000000
+  end
+  inherited OpenDialog1: TOpenDialog
+    Left = 376
+    Top = 168
+  end
+  inherited SaveDialog1: TSaveDialog
+    Left = 360
+    Top = 120
+  end
+  inherited addTagBtn: TButton
+    Position.X = 293.000000000000000000
+    Size.Width = 60.000000000000000000
+    Size.Height = 27.000000000000000000
+  end
+  inherited delTagBtn: TButton
+    Position.X = 351.000000000000000000
+    Size.Width = 50.000000000000000000
+    Size.Height = 27.000000000000000000
+  end
+  inherited aboutBtn: TButton
+    Position.X = 317.000000000000000000
+    Size.Width = 76.000000000000000000
+    Size.Height = 27.000000000000000000
+  end
+  inherited editTagBtn: TButton
+    Position.X = 236.000000000000000000
+    Size.Width = 53.000000000000000000
+    Size.Height = 27.000000000000000000
+  end
+end
