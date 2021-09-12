@@ -28,6 +28,7 @@
 
 # Delphi compiler-generated binaries (safe to delete)
 *.exe
+*.app
 *.dll
 *.bpl
 *.bpi
@@ -70,5 +71,5 @@ __recovery/
 # Boss dependency manager vendor folder https://github.com/HashLoad/boss
 modules/
 
-# Winsoft
-Winsoft JSON
+
+
