@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.ExtCtrls, FMX.Controls.Presentation, FMX.ScrollBox, FMX.Memo, FMX.DialogService,
   FMX.Memo.Types, FMX.Platform, System.JSON, System.IOUtils, Generics.Collections,
-  System.JSON.Readers, System.JSON.Writers, System.JSON.Types, u_urlOpen, WinJSON;
+  System.JSON.Readers, System.JSON.Writers, System.JSON.Types, u_urlOpen;
 
 type
   TmainForm = class(TForm)
@@ -56,7 +56,7 @@ type
 
 var
   mainForm: TmainForm;
-  JsonValues: TJson;
+  JsonValues: TJsonObject;
   myDict: TObjectDictionary<string, TIntent>;
   anIntent: TIntent;
 
@@ -86,7 +86,7 @@ begin
     myStringBuilder.Append(aLine)
   end;
   CloseFile(theFile);
-  tr := TStringReader.Create(myStringBuilder.Text);
+  tr := TStringReader.Create(myStringBuilder.ToString);
   JSONReader := TJsonTextReader.Create(tr);
   with JSONReader do
   try
@@ -278,18 +278,10 @@ procedure TmainForm.openBtnClick(Sender: TObject);
 begin
     OpenDialog1.Filter := 'Intent files (*.json)|*.json';
     if OpenDialog1.Execute then
-    begin
-      with TJsonParser.Create do
-      begin
-        JsonValues := ParseUtf8File(OpenDialog1.FileName);
-      end;
-      if (JsonValues <> nil) then
       begin
         WalkIt;
         Populate;
       end
-      else ShowMessage('I cannot parse this JSON file. Invalid JSON?')
-    end;
 end;
 
 // On any change to a memo field, the entire memo's contents are

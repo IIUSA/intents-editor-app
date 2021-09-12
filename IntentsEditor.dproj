@@ -300,8 +300,8 @@
         <Debugger_Launcher>/usr/X11/bin/xterm -e &quot;%debuggee%&quot;</Debugger_Launcher>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
-        <VerInfo_Build>10</VerInfo_Build>
-        <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=$(MSBuildProjectName);CFBundleVersion=0.1.10;CFBundlePackageType=APPL;CFBundleSignature=????;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);NSHighResolutionCapable=true;LSApplicationCategoryType=public.app-category.utilities;NSContactsUsageDescription=The reason for accessing the contacts;CFBundleShortVersionString=1.0.0;NSLocationUsageDescription=The reason for accessing the location information of the user;NSCalendarsUsageDescription=The reason for accessing the calendar data;NSRemindersUsageDescription=The reason for accessing the reminders;NSCameraUsageDescription=The reason for accessing the camera;NSMicrophoneUsageDescription=The reason for accessing the microphone;NSMotionUsageDescription=The reason for accessing the accelerometer;NSDesktopFolderUsageDescription=The reason for accessing the Desktop folder;NSDocumentsFolderUsageDescription=The reason for accessing the Documents folder;NSDownloadsFolderUsageDescription=The reason for accessing the Downloads folder;NSNetworkVolumesUsageDescription=The reason for accessing files on a network volume;NSRemovableVolumesUsageDescription=The reason for accessing files on a removable volume;NSSpeechRecognitionUsageDescription=The reason for requesting to send user data to Apple&apos;s speech recognition servers</VerInfo_Keys>
+        <VerInfo_Build>11</VerInfo_Build>
+        <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=$(MSBuildProjectName);CFBundleVersion=0.1.11;CFBundlePackageType=APPL;CFBundleSignature=????;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);NSHighResolutionCapable=true;LSApplicationCategoryType=public.app-category.utilities;NSContactsUsageDescription=The reason for accessing the contacts;CFBundleShortVersionString=1.0.0;NSLocationUsageDescription=The reason for accessing the location information of the user;NSCalendarsUsageDescription=The reason for accessing the calendar data;NSRemindersUsageDescription=The reason for accessing the reminders;NSCameraUsageDescription=The reason for accessing the camera;NSMicrophoneUsageDescription=The reason for accessing the microphone;NSMotionUsageDescription=The reason for accessing the accelerometer;NSDesktopFolderUsageDescription=The reason for accessing the Desktop folder;NSDocumentsFolderUsageDescription=The reason for accessing the Documents folder;NSDownloadsFolderUsageDescription=The reason for accessing the Downloads folder;NSNetworkVolumesUsageDescription=The reason for accessing files on a network volume;NSRemovableVolumesUsageDescription=The reason for accessing files on a removable volume;NSSpeechRecognitionUsageDescription=The reason for requesting to send user data to Apple&apos;s speech recognition servers</VerInfo_Keys>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_MinorVer>1</VerInfo_MinorVer>
         <PF_AppleID>bd5@bd5.com</PF_AppleID>
@@ -316,10 +316,10 @@
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
         <VerInfo_Release>1</VerInfo_Release>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=IIUSATech AI;FileVersion=0.1.1.501;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=0.0.1.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=IIUSATech AI Intents Editor</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=IIUSATech AI;FileVersion=0.1.1.506;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=0.0.1.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=IIUSATech AI Intents Editor</VerInfo_Keys>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <VerInfo_Build>501</VerInfo_Build>
+        <VerInfo_Build>506</VerInfo_Build>
         <VerInfo_MinorVer>1</VerInfo_MinorVer>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
@@ -494,6 +494,17 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_NotificationIcon_24x24.png" Configuration="Debug" Class="Android_NotificationIcon24">
+                    <Platform Name="Android64">
+                        <RemoteName>ic_notification.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Android64\Debug\styles.xml" Configuration="Debug" Class="AndroidSplashStyles">
+                    <Platform Name="Android64">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="$(BDS)\lib\android\debug\mips\libnative-activity.so" Configuration="Debug" Class="AndroidLibnativeMipsFile">
                     <Platform Name="Android">
                         <RemoteName>libHeaderFooterApplication.so</RemoteName>
@@ -503,17 +514,6 @@
                 <DeployFile LocalName="iOSSimulator\Debug\IntentsEditor" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="iOSSimulator">
                         <RemoteName>IntentsEditor</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_NotificationIcon_24x24.png" Configuration="Debug" Class="Android_NotificationIcon24">
-                    <Platform Name="Android64">
-                        <RemoteName>ic_notification.png</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Android64\Debug\styles.xml" Configuration="Debug" Class="AndroidSplashStyles">
-                    <Platform Name="Android64">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
