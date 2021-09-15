@@ -134,9 +134,9 @@ begin
         end;
       end
   finally  // The only object that remains is the dictionary, rest are freed
-    JSONreader.free;
-    tr.free;
-    myStringBuilder.free;
+    FreeAndNil(JSONreader);
+    FreeAndNil(tr);
+    FreeAndNil(myStringBuilder);
   end;
 end;
 
@@ -356,10 +356,10 @@ begin
       Rewrite(theFile);
       WriteLn(theFile,stringWriter.ToString);
       CloseFile(theFile);
-      stringWriter.Free;
-      jsonWriter.Free;
-      patterns.Free;
-      responses.Free;
+      FreeAndNil(stringWriter);
+      FreeAndNil(jsonWriter);
+      FreeAndNil(patterns);
+      FreeAndNil(responses);
     end;
 end;
 
