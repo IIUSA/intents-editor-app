@@ -64,6 +64,8 @@ implementation
 
 {$R *.fmx}
 {$R *.LgXhdpiPh.fmx ANDROID}
+{$R *.Windows.fmx MSWINDOWS}
+{$R *.Macintosh.fmx MACOS}
 
 // Walkit opens the json file, checks that it is an intents file and
 // reads the various pattern and response groups into a dictionary, with

@@ -345,15 +345,6 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPhone\FM_LaunchImage_3x.png" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>IntentsEditor.app\..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset\</RemoteDir>
-            <RemoteName>FM_LaunchScreenImage_iPhone@3x.png</RemoteName>
-            <DeployClass>iPhone_Launch3x</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="iOSSimulator\Debug\IntentsEditor" Condition="'$(Config)'=='Debug'">
             <RemoteDir>IntentsEditor.app\</RemoteDir>
             <RemoteName>IntentsEditor</RemoteName>
@@ -368,6 +359,15 @@
             <RemoteDir>IntentsEditor.app\..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset\</RemoteDir>
             <RemoteName>FM_ApplicationIcon_152x152.png</RemoteName>
             <DeployClass>iPad_AppIcon152</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPhone\FM_LaunchImage_3x.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>IntentsEditor.app\..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset\</RemoteDir>
+            <RemoteName>FM_LaunchScreenImage_iPhone@3x.png</RemoteName>
+            <DeployClass>iPhone_Launch3x</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
