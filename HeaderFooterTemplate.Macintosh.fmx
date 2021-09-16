@@ -1,5 +1,8 @@
 inherited mainForm_Macintosh: TmainForm_Macintosh
   DesignerMasterStyle = 0
+  inherited tagSelector: TPopupBox
+    Position.Y = 74.000000000000000000
+  end
   inherited patternsMemo: TMemo
     Viewport.Width = 334.000000000000000000
     Viewport.Height = 176.000000000000000000
