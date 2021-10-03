@@ -40,6 +40,15 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="..\Downloads\boticon.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>IntentsEditor\Assets\</RemoteDir>
+            <RemoteName>Logo44x44.png</RemoteName>
+            <DeployClass>UWP_DelphiLogo44</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="intents.json" Condition="'$(Config)'=='Release'">
             <RemoteDir>IntentsEditor\</RemoteDir>
             <RemoteName>intents.json</RemoteName>
@@ -56,6 +65,15 @@
             <RemoteName>intents.json</RemoteName>
             <DeployClass>ProjectFile</DeployClass>
             <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="..\Downloads\boticon.png" Condition="'$(Config)'=='Release'">
+            <RemoteDir>IntentsEditor\Assets\</RemoteDir>
+            <RemoteName>Logo44x44.png</RemoteName>
+            <DeployClass>UWP_DelphiLogo44</DeployClass>
+            <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -174,11 +192,38 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="IntentsEditor_Icns4.icns" Condition="'$(Config)'=='Release'">
+            <RemoteDir>IntentsEditor.app\Contents\Resources\</RemoteDir>
+            <RemoteName>IntentsEditor.icns</RemoteName>
+            <DeployClass>ProjectOSXResource</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="IntentsEditor_Icns.icns" Condition="'$(Config)'=='Release'">
+            <RemoteDir>IntentsEditor.app\Contents\Resources\</RemoteDir>
+            <RemoteName>IntentsEditor.icns</RemoteName>
+            <DeployClass>ProjectOSXResource</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="intents.json" Condition="'$(Config)'=='Release'">
             <RemoteDir>IntentsEditor.app\Contents\Resources\StartUp\</RemoteDir>
             <RemoteName>intents.json</RemoteName>
             <DeployClass>ProjectFile</DeployClass>
             <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="IntentsEditor_Icns3.icns" Condition="'$(Config)'=='Release'">
+            <RemoteDir>IntentsEditor.app\Contents\Resources\</RemoteDir>
+            <RemoteName>IntentsEditor.icns</RemoteName>
+            <DeployClass>ProjectOSXResource</DeployClass>
+            <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>

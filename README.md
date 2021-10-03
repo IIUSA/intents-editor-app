@@ -1,5 +1,5 @@
 # intents-editor-app
-The Intents Editor app is a multiplatform app that allows the user to
+The IIUSA Intent Editor app is a multiplatform app that allows the user to
 edit Intents for bots. The app runs on:
 
 - Windows 32 and 64 bit

@@ -134,9 +134,9 @@ begin
         end;
       end
   finally  // The only object that remains is the dictionary, rest are freed
-    JSONreader.Free;
-    tr.Free;
-    myStringBuilder.Free;
+    FreeAndNil(JSONreader);
+    FreeAndNil(tr);
+    FreeAndNil(myStringBuilder);
   end;
 end;
 
@@ -167,7 +167,7 @@ end;
 
 procedure TmainForm.aboutBtnClick(Sender: TObject);
 begin
-  TDialogService.ShowMessage('Intents Editor v0.0.1');
+  TDialogService.ShowMessage('IIUSA Intent Editor v1.0.0');
 end;
 
 // Handles request to add a new tag. Note that the patterns and responses
@@ -192,7 +192,6 @@ begin
           if myDict = nil then
             myDict := TObjectDictionary<string,TIntent>.Create(1);
           myDict.Add(AValues[0],anIntent);
-  //        OpenDialog1.FileName := 'New intent.json';
           Populate;
         end;
        end;
@@ -291,14 +290,12 @@ end;
 
 procedure TmainForm.patternsMemoChangeTracking(Sender: TObject);
 begin
-  if (myDict <> nil) then
-       myDict[tagSelector.Items[tagSelector.ItemIndex]].patterns.assign(patternsMemo.Lines);
+  myDict[tagSelector.Items[tagSelector.ItemIndex]].patterns.assign(patternsMemo.Lines);
 end;
 
 procedure TmainForm.onResponsesMemoChangeTracking(Sender: TObject);
 begin
-  if (myDict <> nil) then
-        myDict[tagSelector.Items[tagSelector.ItemIndex]].responses.assign(responsesMemo.Lines);
+  myDict[tagSelector.Items[tagSelector.ItemIndex]].responses.assign(responsesMemo.Lines);
 end;
 
 // Handle the request to save the intent to an existing or new filename
@@ -310,7 +307,6 @@ var
   jsonWriter: TJsonTextWriter;
   key: string;
   i: integer;
-  patterns, responses: TStringList;
   theFile: TextFile;
 begin
     SaveDialog1.Filter := 'Intent files (*.json)|*.json';
@@ -320,13 +316,14 @@ begin
       SaveDialog1.FileName := ExtractFileName(OpenDialog1.FileName);
     end
     else
+    begin
       SaveDialog1.InitialDir := GetCurrentDir;
+      SaveDialog1.Filename := 'NewIntent.json';
+    end;
     if SaveDialog1.Execute then
     begin
       stringWriter := TStringWriter.Create;
       jsonWriter := TJsonTextWriter.Create(stringWriter);
-      patterns := TStringList.Create;
-      responses := TStringList.Create;
       jsonWriter.Formatting := TJsonFormatting.Indented;
       jsonWriter.WriteStartObject;
       jsonWriter.WritePropertyName('intents');
@@ -334,20 +331,20 @@ begin
       for key in myDict.Keys do
       begin
         jsonWriter.WriteStartObject;
-         jsonWriter.WritePropertyName('tag');
-         jsonWriter.WriteValue(key);
-         patterns.Assign(myDict[key].patterns);
-         responses.Assign(myDict[key].responses);
-         jsonWriter.WritePropertyName('patterns');
-           jsonWriter.WriteStartArray;
-           for i := 0 to patterns.Count-1 do
-             if patterns[i] > '' then jsonWriter.WriteValue(patterns[i]);
-           jsonWriter.WriteEndArray;
-         jsonWriter.WritePropertyName('responses');
-           jsonWriter.WriteStartArray;
-           for i := 0 to responses.Count-1 do
-             if responses[i] > '' then jsonWriter.WriteValue(responses[i]);
-           jsonWriter.WriteEndArray;
+        jsonWriter.WritePropertyName('tag');
+        jsonWriter.WriteValue(key);
+        jsonWriter.WritePropertyName('patterns');
+        jsonWriter.WriteStartArray;
+        for i := 0 to myDict[key].patterns.Count-1 do
+          if length(myDict[key].patterns[i]) > 0 then
+            jsonWriter.WriteValue(myDict[key].patterns[i]);
+        jsonWriter.WriteEndArray;
+        jsonWriter.WritePropertyName('responses');
+        jsonWriter.WriteStartArray;
+        for i := 0 to myDict[key].responses.Count-1 do
+          if length(myDict[key].responses[i]) > 0 then
+            jsonWriter.WriteValue(myDict[key].responses[i]);
+        jsonWriter.WriteEndArray;
         jsonWriter.WriteEndObject;
       end;
       jsonWriter.WriteEndArray;
@@ -356,10 +353,8 @@ begin
       Rewrite(theFile);
       WriteLn(theFile,stringWriter.ToString);
       CloseFile(theFile);
-      stringWriter.Free;
-      jsonWriter.Free;
-      patterns.Free;
-      responses.Free;
+      FreeAndNil(stringWriter);
+      FreeAndNil(jsonWriter);
     end;
 end;
 
@@ -369,15 +364,8 @@ end;
 
 procedure TmainForm.tagSelectorChange(Sender: TObject);
 begin
-  if tagSelector.ItemIndex > -1 then
-    begin
-      if myDict <> nil then
-      begin
-        myDict.TryGetValue(tagSelector.Items[tagSelector.ItemIndex],anIntent);
-        patternsMemo.Lines.Assign(anIntent.patterns);
-        responsesMemo.Lines.Assign(anIntent.responses);
-      end;
-    end;
+  patternsMemo.Lines.Assign(myDict[tagSelector.Items[tagSelector.ItemIndex]].patterns);
+  responsesMemo.Lines.Assign(myDict[tagSelector.Items[tagSelector.ItemIndex]].responses);
 end;
 
 end.

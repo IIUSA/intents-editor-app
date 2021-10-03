@@ -2,9 +2,10 @@ object mainForm: TmainForm
   Left = 0
   Top = 0
   BorderStyle = Single
-  Caption = 'IIUSATech Intents Editor'
+  Caption = 'IIUSA Intent Editor'
   ClientHeight = 511
   ClientWidth = 353
+  Position = ScreenCenter
   FormFactor.Width = 1440
   FormFactor.Height = 900
   FormFactor.Devices = [Desktop]
