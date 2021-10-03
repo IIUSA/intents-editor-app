@@ -3,8 +3,7 @@ The IIUSA Intent Editor app is a multiplatform app that allows the user to
 edit Intents for bots. The app runs on:
 
 - Windows 32 and 64 bit
-- OS/X (you must supply your own signing keys)
-- Linux (using Wine)
+- OS/X 64-bit (you must supply your own signing keys)
 
 Platforms that may be added in the future:
 
@@ -18,7 +17,7 @@ We do not support RAD Studio or the Object Pascal language, it is assumed that y
 
 https://www.embarcadero.com/products/delphi/starter/free-download
 
-Note that it only runs under Windows. It will not run under Wine on Linux. It is free to use for non-commercial purposes or commercial up to $5000 revenue.
+Note that RAD Studio only runs on Windows. It will not run under Wine on Linux. It is free to use for non-commercial purposes or commercial up to $5000 revenue.
 
 If you wish to contribute to the project, fork the repo, make your changes and submit
 them as a pull request for consideration. This is a fairly simple app, so it should be
