@@ -1,22 +1,17 @@
 {
     "intents": [
         {
-            "tag": "goodbye",
+            "tag": "ruhuman",
             "patterns": [
-                "bye",
-                "g2g",
-                "see ya",
-                "adios",
-                "cya",
-                "goodbye",
-                "gotta go",
-                "got to go"
+                "Are you real?",
+                "Are you human?",
+                "Are you a robot?",
+                "Are you a machine?"
             ],
             "responses": [
-                "Be well.",
-                "See you later",
-                "Until we chat again.",
-                "Take Care!"
+                "I am as real as Data gets.",
+                "I am kinda \"choose your own adventure.\"",
+                "I aim to be."
             ]
         },
         {
@@ -208,17 +203,22 @@
             ]
         },
         {
-            "tag": "ruhuman",
+            "tag": "goodbye",
             "patterns": [
-                "Are you real?",
-                "Are you human?",
-                "Are you a robot?",
-                "Are you a machine?"
+                "bye",
+                "g2g",
+                "see ya",
+                "adios",
+                "cya",
+                "goodbye",
+                "gotta go",
+                "got to go"
             ],
             "responses": [
-                "I am as real as Data gets.",
-                "I am kinda \"choose your own adventure.\"",
-                "I aim to be."
+                "Be well.",
+                "See you later",
+                "Until we chat again.",
+                "Take Care!"
             ]
         }
     ]

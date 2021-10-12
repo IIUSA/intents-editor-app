@@ -249,12 +249,11 @@ end;
 
 procedure TmainForm.resetBtnClick(Sender: TObject);
 begin
-  TDialogService.MessageDialog('Do you really want to clear the workspace?',
+  TDialogService.MessageDialog('Clear the workspace?',
     TMsgDlgType.mtWarning, mbYesNo, TMsgDlgBtn.mbNo, 0,
     procedure (const AResult: TModalResult) begin
        if AResult = mrYes then
        begin
-          // Put code here to reset the dictionaries
           fileLabel.Text := 'File:';
           OpenDialog1.FileName := '';
           resetBtn.Enabled := false;
@@ -324,37 +323,40 @@ begin
     begin
       stringWriter := TStringWriter.Create;
       jsonWriter := TJsonTextWriter.Create(stringWriter);
-      jsonWriter.Formatting := TJsonFormatting.Indented;
-      jsonWriter.WriteStartObject;
-      jsonWriter.WritePropertyName('intents');
-      jsonWriter.WriteStartArray;
-      for key in myDict.Keys do
-      begin
+      try
+        jsonWriter.Formatting := TJsonFormatting.Indented;
         jsonWriter.WriteStartObject;
-        jsonWriter.WritePropertyName('tag');
-        jsonWriter.WriteValue(key);
-        jsonWriter.WritePropertyName('patterns');
+        jsonWriter.WritePropertyName('intents');
         jsonWriter.WriteStartArray;
-        for i := 0 to myDict[key].patterns.Count-1 do
-          if length(myDict[key].patterns[i]) > 0 then
-            jsonWriter.WriteValue(myDict[key].patterns[i]);
-        jsonWriter.WriteEndArray;
-        jsonWriter.WritePropertyName('responses');
-        jsonWriter.WriteStartArray;
-        for i := 0 to myDict[key].responses.Count-1 do
-          if length(myDict[key].responses[i]) > 0 then
-            jsonWriter.WriteValue(myDict[key].responses[i]);
+        for key in myDict.Keys do
+        begin
+          jsonWriter.WriteStartObject;
+          jsonWriter.WritePropertyName('tag');
+          jsonWriter.WriteValue(key);
+          jsonWriter.WritePropertyName('patterns');
+          jsonWriter.WriteStartArray;
+          for i := 0 to myDict[key].patterns.Count-1 do
+            if length(myDict[key].patterns[i]) > 0 then
+              jsonWriter.WriteValue(myDict[key].patterns[i]);
+          jsonWriter.WriteEndArray;
+          jsonWriter.WritePropertyName('responses');
+          jsonWriter.WriteStartArray;
+          for i := 0 to myDict[key].responses.Count-1 do
+            if length(myDict[key].responses[i]) > 0 then
+              jsonWriter.WriteValue(myDict[key].responses[i]);
+          jsonWriter.WriteEndArray;
+          jsonWriter.WriteEndObject;
+        end;
         jsonWriter.WriteEndArray;
         jsonWriter.WriteEndObject;
+        AssignFile(theFile,SaveDialog1.Filename);
+        Rewrite(theFile);
+        WriteLn(theFile,stringWriter.ToString);
+        CloseFile(theFile);
+      finally
+        FreeAndNil(stringWriter);
+        FreeAndNil(jsonWriter);
       end;
-      jsonWriter.WriteEndArray;
-      jsonWriter.WriteEndObject;
-      AssignFile(theFile,SaveDialog1.Filename);
-      Rewrite(theFile);
-      WriteLn(theFile,stringWriter.ToString);
-      CloseFile(theFile);
-      FreeAndNil(stringWriter);
-      FreeAndNil(jsonWriter);
     end;
 end;
 
