@@ -22,3 +22,5 @@ Note that RAD Studio only runs on Windows. It will not run under Wine on Linux. 
 If you wish to contribute to the project, fork the repo, make your changes and submit
 them as a pull request for consideration. This is a fairly simple app, so it should be
 easy for you to modify it for your needs if you feel it necessary.
+
+NOTE: Do NOT try to import this project into RAD Studio 11. It doesn't work and Embarcadero does not care. 
